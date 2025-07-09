@@ -1,23 +1,23 @@
-// import { resuseEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-// class Test f(props){
-//     const [message, setMessage] = useState("");
+function Test (){
+    const [message, setMessage] = useState("");
 
-//     useEffect(()=>{
-//         fetch("/backend/test")
-//             .then(res => res.text())
-//             .then( m=> setMessage(m))
-//         }, [])
+    useEffect(()=>{
+        fetch("/backend/test")
+            .then(res => res.text())
+            .then( m=> setMessage(m))
+    }, [])
 
-//     console.log("테스트")
+    console.log("테스트")
 
-//     return (
-//       < >
-//         <p>
-//           Hi! {message}
-//         </p>
-//       </>
-//     )
-// }
+    return (
+      <div>
+        <p>
+          Hi! {message}
+        </p>
+      </div>
+    )
+}
 
-// export default Test;
+export default Test;
