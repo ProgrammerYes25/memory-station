@@ -8,8 +8,6 @@ import Review from './pages/ReviewPage'
 import Sigup from './pages/SignupPage'
 
 function App() {
-
-
   console.log("테스트")
   return (
     <div className="App">
