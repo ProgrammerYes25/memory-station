@@ -4,7 +4,7 @@ function Test (){
     const [message, setMessage] = useState("");
 
     useEffect(()=>{
-        fetch("/backend/test")
+        fetch("/api/test")
             .then(res => res.text())
             .then( m=> setMessage(m))
     }, [])

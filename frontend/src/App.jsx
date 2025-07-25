@@ -1,11 +1,11 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Test from './tests/Test';
+import Test from './tests/Test'
 import Home from './pages/HomePage'
 import Goal from './pages/GoalPage'
 import Login from './pages/LoginPage'
 import Review from './pages/ReviewPage'
-import Sigup from './pages/SignupPage'
+import Signup from './pages/SignupPage'
 
 function App() {
   console.log("테스트")
@@ -17,7 +17,7 @@ function App() {
           <Route path="/goal" element={<Goal />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/review" element={<Review />}/>
-          <Route path="/sigup" element={<Sigup />}/>
+          <Route path="/signup" element={<Signup />}/>
           <Route path="/test" element={<Test />}/>
         </Routes>
       </BrowserRouter>
