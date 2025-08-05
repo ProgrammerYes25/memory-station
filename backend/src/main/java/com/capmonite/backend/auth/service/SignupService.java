@@ -13,11 +13,16 @@ public class SignupService {
     private SignupRepository signupRepository;
 
     @Autowired
-    public SignupService(SignupRepository signupRepository){
+    public SignupService(SignupRepository signupRepository) {
         this.signupRepository = signupRepository;
     }
 
+    @Transactional
     public void registerUser(UserSigupDto registerDto){
+        if(signupRepository.existsByUserid(registerDto.getUserid())) {
+            throw new IllegalArgumentException("* 이미사용중인 아이디 입니다.");
+        }
+
         User newUser = new User(
                 registerDto.getUserid(),
                 registerDto.getUserName(),
@@ -28,5 +33,9 @@ public class SignupService {
         );
 
         signupRepository.save(newUser);
+    }
+
+    public boolean checkUserId(String userid){
+        return signupRepository.existsByUserid(userid);
     }
 }

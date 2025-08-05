@@ -9,12 +9,23 @@ function SignupForm () {
     let [username, setUsername] = useState('');
     let [birthdate, setBirthdate] = useState('');
     let [useremail, setUseremail] = useState('');
-    const {signup} = useAuth(); 
+
+    
+    const {signup, checkUserId, idAvailable, setIdAvailable, idCheckMessage, setIdCheckMessage, message, setMessage} = useAuth(); 
     
     const dataSubmit = (e) =>{
         e.preventDefault();
         signup(userid, password, passwordCheck, username, birthdate, useremail);
     };
+
+    // const handleIdCheck = () =>{
+    //     if (userid.trim() === '') {
+    //         setIdCheckMessage('아이디를 입력해주세요.');
+    //         setIsIdAvailable(false);
+    //         return;
+    //     }
+    //     checkUserId(userid);
+    // };
 
     return(
         <div className="login-form">
@@ -27,7 +38,9 @@ function SignupForm () {
                         onChange={(e) => setUserid(e.target.value)}
                         placeholder="아이디"
                         required
-                   />   
+                   />
+                   <button type="button" onClick={()=>checkUserId(userid)}>중복확인</button>
+                    {idCheckMessage && <p style={{color:'red'}}>{idCheckMessage}</p>}
                 </div>
                 <div className="form-group">
                     <input
@@ -81,6 +94,7 @@ function SignupForm () {
                    />   
                 </div>
                 <button type="submit" className="singup-button">가입 완료</button>
+                {message && <p style={{color:'red'}}>{message}</p>}
             </form>
         </div>
     );
