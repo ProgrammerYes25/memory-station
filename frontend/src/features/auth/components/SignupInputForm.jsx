@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
-function SignupForm () {
+function SignupForm ({ onNext }) {
     let [userid, setUserid] = useState('');
     let [password, setPassword] = useState('');
     let [passwordCheck, setPasswordCheck] = useState('');
@@ -130,7 +130,7 @@ function SignupForm () {
                         required
                    />   
                 </div>
-                <button type="submit" className="singup-button">가입 완료</button>
+                <button type="submit" className="singup-button" onClick={onNext} >가입 완료</button>
                 {message && <p style={{color:'red'}}>{message}</p>}
             </form>
         </div>
