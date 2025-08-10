@@ -1,102 +1,57 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import SingupInputForm from '../components/SignupInputForm'
+import SingupTermeForm from '../components/SignupTermeForm'
+import WelcomePage from '../components/WelcomePage'
+
+const MODES ={
+    LOGIN:'login',
+    SINGUP_TERMS: 'singup_terme',
+    SINGIP_FORM: 'singup_form'
+}
 
 function SignupForm () {
-    let [userid, setUserid] = useState('');
-    let [password, setPassword] = useState('');
-    let [passwordCheck, setPasswordCheck] = useState('');
-    let [username, setUsername] = useState('');
-    let [birthdate, setBirthdate] = useState('');
-    let [useremail, setUseremail] = useState('');
+    let [mode, setMode] = useState(MODES.SINGUP_TERMS);
 
-    
-    const {signup, checkUserId, idAvailable, setIdAvailable, idCheckMessage, setIdCheckMessage, message, setMessage} = useAuth(); 
-    
-    const dataSubmit = (e) =>{
-        e.preventDefault();
-        signup(userid, password, passwordCheck, username, birthdate, useremail);
+    const handleGoToRegister = () => {
+        setMode(MODES.SINGUP_TERMS); // 로그인 페이지에서 회원가입 버튼 클릭 시
+    }
+    const handleNextFromTerms = () => {
+        setMode(MODES.SINGUP_FORM); // 약관 동의 후 회원가입 폼으로 전환
     };
-
-    // const handleIdCheck = () =>{
-    //     if (userid.trim() === '') {
-    //         setIdCheckMessage('아이디를 입력해주세요.');
-    //         setIsIdAvailable(false);
-    //         return;
-    //     }
-    //     checkUserId(userid);
-    // };
+    const handleWelcomePage =() =>{
+        setMode(MODES.LOGIN)
+    }
 
     return(
-        <div className="login-form">
-            <form onSubmit={dataSubmit}>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        id="userid"
-                        value={userid}
-                        onChange={(e) => setUserid(e.target.value)}
-                        placeholder="아이디"
-                        required
-                   />
-                   <button type="button" onClick={()=>checkUserId(userid)}>중복확인</button>
-                    {idCheckMessage && <p style={{color:'red'}}>{idCheckMessage}</p>}
-                </div>
-                <div className="form-group">
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) =>  setPassword(e.target.value)}
-                        placeholder="비밀번호"
-                        required
-                   />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="password"
-                        id="password-check"
-                        value={passwordCheck}
-                        onChange={(e) =>  setPasswordCheck(e.target.value)}
-                        placeholder="비밀번호 확인"
-                        required
-                   />
-                </div>
-                <h6>개인 정보</h6>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="이름 임력"
-                        required
-                   />   
-                </div>
-                <div className="form-group">
-                    <input
-                        type="date"
-                        id="birthdate"
-                        value={birthdate}
-                        onChange={(e) => setBirthdate(e.target.value)}
-                        placeholder="생년월일"
-                        required
-                   />   
-                </div>
-                <div className="form-group">
-                    <input
-                        type="email"
-                        id="useremail"
-                        value={useremail}
-                        onChange={(e) => setUseremail(e.target.value)}
-                        placeholder="이메일"
-                        required
-                   />   
-                </div>
-                <button type="submit" className="singup-button">가입 완료</button>
-                {message && <p style={{color:'red'}}>{message}</p>}
-            </form>
+        <div className="App">
+            <header className="App-header">
+                <h1>회원가입</h1>
+            </header>
+            <main>
+                {mode === MODES.SINGUP_TERMS && (
+                    <div>
+                        <SingupTermeForm onNext={handleNextFromTerms} />
+                    </div>
+                )}
+                {mode === MODES.SINGUP_FORM && (
+                    <div>
+                        <SingupInputForm onNext={handleWelcomePage} />
+                        <button onClick={handleGoToRegister} className="link-button back-button">
+                        ← 이전
+                        </button>
+                    </div>
+                )}
+                {mode === MODES.LOGIN &&(
+                    <div>
+                        <WelcomePage onNext={handleWelcomePage} />
+                    </div>
+                )}
+            </main>
+
         </div>
+      
     );
 };
 

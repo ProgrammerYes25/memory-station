@@ -15,7 +15,7 @@ public class UserSigupDto {
     private String userid;
 
     @NotBlank(message = "비밀 번호는 필수 입력 값입니다.")
-    @Size(min = 4, max = 30, message = "비밀 번호는 4자 이상 30자 이하로 입력해주세요.")
+    @Size(min = 8, max = 30, message = "비밀 번호는 8자 이상 30자 이하로 입력해주세요.")
     private String password;
 
     @NotBlank(message = "이메일은 필수 입력 값입니다.")

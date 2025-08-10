@@ -2,15 +2,18 @@ import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth.jsx';
 
+
 function LoginForm () {
     let [userid, setUserid] = useState('');
     let [password, setPassword] = useState('');
     const {login} = useAuth(); 
-    
+
     const dataSubmit = (e) =>{
         e.preventDefault();
         login(userid,password);
     };
+
+
 
     return(
         <div className="login-form">
@@ -34,7 +37,7 @@ function LoginForm () {
                    />
                 </div>
                 <button type="submit" className="login-button">로그인</button><br/>
-                <Link>아이디 찾기</Link><Link>비밀번호 찾기</Link><Link to="/sigup">회원가입 하기</Link>
+                <Link>아이디 찾기</Link><Link>비밀번호 찾기</Link><Link to="/signup">회원가입 하기</Link>
             </form>
         </div>
     );

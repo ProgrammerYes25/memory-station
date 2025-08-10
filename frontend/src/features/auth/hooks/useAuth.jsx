@@ -6,6 +6,7 @@ function useAuth(){
     let [message, setMessage] = useState();
     const [idCheckMessage, setIdCheckMessage] = useState('');
     const [idAvailable, setIdAvailable] = useState(false);
+
     
     const login =  (userid, password) => {
         console.log("usernmae:"+userid+"password:"+password);  

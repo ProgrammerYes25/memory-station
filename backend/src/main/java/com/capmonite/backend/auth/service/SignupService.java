@@ -20,7 +20,7 @@ public class SignupService {
     @Transactional
     public void registerUser(UserSigupDto registerDto){
         if(signupRepository.existsByUserid(registerDto.getUserid())) {
-            throw new IllegalArgumentException("* 이미사용중인 아이디 입니다.");
+            throw new IllegalArgumentException("* 아이디 중복확인을 완료해주세요.");
         }
 
         User newUser = new User(
