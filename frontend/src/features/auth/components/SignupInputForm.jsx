@@ -130,11 +130,9 @@ function SignupForm ({ onNext }) {
                         required
                    />   
                 </div>
-<<<<<<< HEAD
-                <button type="submit" className="singup-button">가입 완료</button>
-=======
+
                 <button type="submit" className="singup-button" >가입 완료</button>
->>>>>>> main
+
                 {message && <p style={{color:'red'}}>{message}</p>}
             </form>
         </div>
