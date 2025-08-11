@@ -18,7 +18,7 @@ function SignupForm ({ onNext }) {
     
     const dataSubmit = (e) =>{
         e.preventDefault();
-        signup(userid, password, passwordCheck, username, birthdate, useremail);
+        signup(userid, password, passwordCheck, username, birthdate, useremail, onNext);
     };
 
     const handleIdChange = (e) =>{
@@ -130,7 +130,7 @@ function SignupForm ({ onNext }) {
                         required
                    />   
                 </div>
-                <button type="submit" className="singup-button" onClick={onNext} >가입 완료</button>
+                <button type="submit" className="singup-button">가입 완료</button>
                 {message && <p style={{color:'red'}}>{message}</p>}
             </form>
         </div>

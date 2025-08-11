@@ -11,7 +11,7 @@ function useAuth(){
     const login =  (userid, password) => {
         console.log("usernmae:"+userid+"password:"+password);  
     };
-    const signup = async (userid, password, passwordCheck, username, birthdate, useremail) => {
+    const signup = async (userid, password, passwordCheck, username, birthdate, useremail, onNext) => {
         console.log("userid: "+userid+" password: "+password+" passwordCheck: "+passwordCheck
             +" username: "+username+" birthdate: "+birthdate+" useremail: "+useremail);
         
@@ -33,6 +33,7 @@ function useAuth(){
                 }
             });
             console.log('회원가입 성공:', response.data);
+            onNext();
         }catch(error){
             if (error.response) {
                 console.error('* 회원가입 실패 (서버 응답):', error.response.data);
