@@ -24,6 +24,7 @@ function LoginForm () {
                         id="userid"
                         value={userid}
                         onChange={(e) => setUserid(e.target.value)}
+                        placeholder="아이디"
                         required
                    />   
                 </div>
@@ -33,11 +34,12 @@ function LoginForm () {
                         id="password"
                         value={password}
                         onChange={(e) =>  setPassword(e.target.value)}
+                        placeholder="비밀번호"
                         required
                    />
                 </div>
                 <button type="submit" className="login-button">로그인</button><br/>
-                <Link>아이디 찾기</Link><Link>비밀번호 찾기</Link><Link to="/signup">회원가입 하기</Link>
+                <Link>아이디 찾기</Link> <Link>비밀번호 찾기</Link> <Link to="/signup">회원가입 하기</Link>
             </form>
         </div>
     );
